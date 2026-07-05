@@ -1,0 +1,114 @@
+START
+
+DECLARE Dictionary storeInventory = {}
+#Needs ProductID
+DECLARE productNumber =
+#Needs productName
+DECLARE productName = INPUT
+#Needs Category
+categoryGrocery = G
+categoryHealth = H
+categoryMisc = M
+# Needs Price
+Price = positive decimal
+
+#Validate inputs
+
+
+
+#productName is not empty
+FUNCTION productNaming()
+	productName = INPUT(Please enter a valid product name. With no symbols."
+		IF productName == "" 
+			DISPLAY(f"{productName) saved!
+			RETURN productName
+		ELSE
+			DISPLAY(ERROR: inavlid name. No symbols are allowed, only letters A-Z)
+		ENDIF
+ENDFUNCTION
+
+
+#category is not empty
+FUNCTION categoryDefine()
+	productCategory = INPUT("Please enter a valid product letter identifer. Must include a valid section identifer. (G, for Grocery, H for Health, M for Misc)")
+		IF productCategory == ("G" OR "H" OR "M") OR productCategory LENGTH > 1
+			THEN RETURN productCategory
+		ELSE
+			DISPLAY(ERROR: invalid category code. Must include uppercase G for Grocery, H for Health or M for MISC.)
+		ENDIF
+ENDFUNCTION
+
+
+
+#productId is unique and alphanumeric
+FUNCTION addProductId()
+	productNumber = INPUT ("Please enter a valid ProductNumber. MUST include 4 integers.")
+		IF productNumber == LENGTH(4) AND productNumber==integer
+			THEN productId =( productNumber + productCategory)
+			RETURN productID
+		ELSE 
+			DISPLAY("ERROR: productID is invalid. MUST include 4 integers."
+		ENDIF
+ENDFUNCTION
+
+
+#price is positive decimal
+FUNCTION addPricing()
+	productPrice = INPUT ("Please enter a valid price. MUST be a positive decimal.")
+	IF productPrice == DECIMAL
+		RETURN productPrice
+	ELSE 
+		DISPLAY("ERROR: product price is invalid. MUST include a positive decimal."
+	ENDIF
+ENDFUNCTION
+
+#quantity is positive integer or 0
+FUNCTION addQuantity()
+	productPrice = INPUT ("Please enter a valid quantity. MUST be a positive integer.")
+	IF productPrice == INTEGER
+		RETURN productQuantity
+	ELSE 
+		DISPLAY("ERROR: product quantity is invalid. MUST include a positive integer."
+	ENDIF
+ENDFUNCTION
+
+
+
+
+FUNCTION productMenu()
+	DISPLAY ("Let's add to your inventory!")
+	addInventory=INPUT("Would you like to add products to store inventory?(y or n)"
+	if addInventory == "y"
+		THEN productNaming()
+			
+		THEN categoryDefine()
+		
+		THEN addProductId()
+		
+		THEN addPricing()
+		
+		THEN addQuantity()
+		
+		SET newProduct = (productNaming + categoryDefine + addProductId + addPricing + addQuantity)
+		THEN append storeInventory with newProduct
+		OUTPUT (f" New Product {productName},{productId},{productCategory),{quantity},{price} added to inventory.")
+			RETURN newProduct
+		DISPLAY(f"Here is your updated inventory, {storeInventory}")
+	ENDWHILE
+			
+	
+	OUTPUT (f" New Product {productName},{productId},{productCategory),{quantity},{price} added to inventory.")
+
+
+
+FUNCTION modifyProduct(addProduct)
+
+#Modify Price
+
+#Modify Quantity
+
+#Modify Category
+
+#Remove product
+	
+END
